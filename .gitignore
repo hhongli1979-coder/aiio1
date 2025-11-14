@@ -25,6 +25,9 @@ coverage
 # Turbo
 .turbo
 
+# npm cache
+.npm-cache
+
 # Vercel
 .vercel
 .cursor
