@@ -3,8 +3,8 @@ FROM node:22-alpine AS builder
 
 WORKDIR /buildingai
 
-# Install pnpm
-RUN npm install -g pnpm@10.20.0
+# Enable corepack and install pnpm
+RUN corepack enable && corepack prepare pnpm@10.20.0 --activate
 
 # Copy package files for dependency installation
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
@@ -29,8 +29,8 @@ FROM node:22-alpine AS production
 
 WORKDIR /buildingai
 
-# Install pnpm and pm2
-RUN npm install -g pnpm@10.20.0 pm2
+# Enable corepack and install pnpm, pm2
+RUN corepack enable && corepack prepare pnpm@10.20.0 --activate && npm install -g pm2
 
 # Copy built files from builder
 COPY --from=builder /buildingai/package.json /buildingai/pnpm-lock.yaml /buildingai/pnpm-workspace.yaml ./

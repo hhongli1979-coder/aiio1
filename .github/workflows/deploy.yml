@@ -45,7 +45,6 @@ jobs:
         run: pnpm build
 
   docker:
-    needs: build
     runs-on: ubuntu-latest
     
     steps:
